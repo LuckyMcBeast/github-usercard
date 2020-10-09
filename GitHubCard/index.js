@@ -6,13 +6,16 @@ import axios from 'axios'
     https://api.github.com/users/<your name>
 */
 
+let githubData;
+
 axios.get(" https://api.github.com/users/luckymcbeast")
   .then(response => {
-    console.log(response)
+    githubData = response.data;
+    console.log(response);
   })
   .catch(err => {
-    console.log(err)
-  })
+    console.log(`Status Code: ${err.status} Response Status: ${err.statusText}`);
+  });
 
 /*
   STEP 2: Inspect and study the data coming back, this is YOUR
@@ -60,15 +63,37 @@ const followersArray = [];
     </div>
 */
 
+//Time saver element
+const create = (element => document.createElement(element));
+
 const createCard = (data => {
-  const card = document.createElement('div');
-  const cardInfo = document.createElement('div');
-  const avatar = document.createElement('img');
-  const name = document.createElement('h3');
-  const username = document.createElement('p');
-  const 
+  //Element Creation
+  const card = create('div');
+  
+  const avatar = create('img'); const cardInfo = create('div');
+  
+  const name = create('h3'); const username = create('p'); const location = create('p');
+  const profile = create('p'); const profileUrl = create('a'); const followers = create('p');
+  const following = create('p'); const bio = create('p');
 
+  //Class Definitions
+  card.classList.add('card');
+  cardInfo.classList.add('card-info');
+  name.classList.add('username');
 
+  //Pull from data
+  avatar.setAttribute('src', data.avatar_url);
+  name.textContent = data.login;
+  username.textContent = 
+  
+  //Implementation
+  cardInfo.appendChild(name); cardInfo.appendChild(username); cardInfo.appendChild(location);
+  cardInfo.appendChild(profile); cardInfo.appendChild(profileUrl); cardInfo.appendChild(followers);
+  cardInfo.appendChild(following); cardInfo.appendChild(bio);
+
+  card.appendChild(avatar); card.appendChild(cardInfo);
+  
+  return card;
 });
 
 /*
