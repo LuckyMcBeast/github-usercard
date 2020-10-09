@@ -61,7 +61,14 @@ const followersArray = [];
 */
 
 const createCard = (data => {
-  
+  const card = document.createElement('div');
+  const cardInfo = document.createElement('div');
+  const avatar = document.createElement('img');
+  const name = document.createElement('h3');
+  const username = document.createElement('p');
+  const 
+
+
 });
 
 /*
