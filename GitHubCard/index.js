@@ -117,10 +117,12 @@ const createCard = (data => {
   return card;
 });
 
+//Execution
 let githubData;
 const cards = document.querySelector('.cards');
 const followersArray = ['luckymcbeast', 'tetondan', 'dustinmyers', 'justsml', 'luishrd', 'bigknell'];
-followersArray.forEach(user => {
+
+const getData = (user =>{
   axios.get(`https://api.github.com/users/${user}`)
   .then(response => {
     githubData = response.data;
@@ -128,7 +130,10 @@ followersArray.forEach(user => {
   })
   .catch(err => {
     console.log(err);
-    console.log(`Status Code: ${err.status} Response Status: ${err.statusText}`);
   });
 })
 
+
+followersArray.forEach(user => {
+  getData(user);
+})
