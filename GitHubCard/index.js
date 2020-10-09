@@ -114,6 +114,8 @@ const createCard = (data => {
 
   card.appendChild(avatar); card.appendChild(cardInfo);
   
+  let getFollowers = data.followers_url;
+  getFollowersApi(getFollowers);
   return card;
 });
 
@@ -126,11 +128,23 @@ const getData = (user =>{
   axios.get(`https://api.github.com/users/${user}`)
   .then(response => {
     githubData = response.data;
+    console.log(githubData);
     cards.append(createCard(githubData));
   })
   .catch(err => {
     console.log(err);
   });
+})
+
+const getFollowersApi = (url => {
+  axios.get(url).then(response => {
+    console.log(response)
+    response.data.forEach(follower => {
+      getData(follower.login);
+    })
+  }).catch(err =>{
+    console.log(err);
+  })
 })
 
 
